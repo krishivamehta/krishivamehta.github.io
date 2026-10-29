@@ -212,37 +212,54 @@
   .skill-group h3 .ico { width: 20px; height: 20px; }
   .now .item b { color: var(--text); font-weight: 500; }
 
-  /* ---------- Written reflections: one card per Medium post ---------- */
-  /* The cards sit on a cutting mat */
+  /* ---------- Written reflections: floating objects on a cutting mat ---------- */
   .reflections {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 40px 36px; border-radius: 20px;
+    position: relative; aspect-ratio: 16 / 9; border-radius: 20px;
     background:
-      linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 40px 40px,
-      linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 40px 40px,
-      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 8px 8px,
-      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 8px 8px,
+      linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 5% 8.889%,
+      linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 5% 8.889%,
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 1% 1.778%,
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 1% 1.778%,
       linear-gradient(160deg, #5b1035, #3f0d3a 60%, #2a0b36);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -24px 50px rgba(0,0,0,0.25), 0 30px 60px -28px rgba(0,0,0,0.6);
     border: 1px solid rgba(255,255,255,0.08);
   }
-  .reflections .refl { background: var(--surface-solid); box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5); transform: rotate(var(--rot, 0deg)); }
-  .reflections .refl:nth-child(1) { --rot: -1.5deg; }
-  .reflections .refl:nth-child(2) { --rot: 1deg; }
-  .reflections .refl:nth-child(3) { --rot: -0.5deg; }
-  .reflections .refl:hover { transform: rotate(var(--rot, 0deg)) translateY(-4px); }
-  .refl { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin: 0; color: inherit; }
-  a.refl:hover { text-decoration: none; }
-  .refl .art {
-    width: 64px; height: 64px; border-radius: 16px; display: grid; place-items: center;
-    background: var(--accent-soft); border: 1px solid var(--accent-line); color: var(--accent);
+  .float-obj {
+    position: absolute; width: 12%; aspect-ratio: 1; padding: 0; border: 0; background: none;
+    color: #f3e8ff; cursor: pointer; display: block;
   }
-  .refl .art svg { width: 34px; height: 34px; }
-  .refl .tag { margin-left: 0; }
-  .refl p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .float-obj .art {
+    display: block; width: 100%; height: 100%;
+    filter: drop-shadow(0 0 10px rgba(216, 180, 254, 0.55)) drop-shadow(0 0 22px rgba(227, 38, 43, 0.35));
+    animation: hover-bob 3.4s ease-in-out infinite alternate; animation-delay: var(--delay, 0s);
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .float-obj .art svg { width: 100%; height: 100%; display: block; }
+  /* Shadow on the mat that shrinks as the object rises */
+  .float-obj::after {
+    content: ""; position: absolute; left: 20%; right: 20%; bottom: -22%; height: 10%; border-radius: 50%;
+    background: rgba(0, 0, 0, 0.45); filter: blur(4px);
+    animation: hover-shadow 3.4s ease-in-out infinite alternate; animation-delay: var(--delay, 0s);
+  }
+  .float-obj:hover .art, .float-obj:focus-visible .art { color: #fff; transform: scale(1.12); }
+  .float-obj:focus-visible { outline: none; }
+  @keyframes hover-bob { from { translate: 0 0; } to { translate: 0 -14%; } }
+  @keyframes hover-shadow { from { transform: scaleX(1); opacity: 0.9; } to { transform: scaleX(0.7); opacity: 0.5; } }
+  .float-obj .peek {
+    position: absolute; left: 50%; top: calc(100% + 26px); width: 210px; transform: translateX(-50%);
+    background: var(--surface-solid); color: var(--text); border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px 12px; font: 0.88rem/1.4 Inter, sans-serif; text-align: left; box-shadow: var(--shadow);
+    opacity: 0; pointer-events: none; transition: opacity 0.15s ease; z-index: 5;
+  }
+  .float-obj.peek-l .peek { left: 0; transform: none; }
+  .float-obj.peek-r .peek { left: auto; right: 0; transform: none; }
+  .float-obj:hover .peek, .float-obj:focus-visible .peek, .float-obj.show .peek { opacity: 1; }
+  .peek strong { display: block; font-family: "Space Grotesk", sans-serif; font-size: 0.98rem; }
+  .peek .tag { margin: 4px 0 0; }
   .sticky {
-    position: absolute; top: 14px; right: 14px; transform: rotate(6deg);
-    background: var(--grad); color: #fff; font: 700 0.72rem/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em;
-    padding: 7px 9px; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: absolute; top: -12px; right: -18px; z-index: 2; transform: rotate(8deg);
+    background: var(--grad); color: #fff; font: 700 0.68rem/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em;
+    padding: 6px 8px; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   }
 
   /* ---------- Stoic learning ---------- */
@@ -388,12 +405,15 @@
     details.proc summary { padding: 18px; gap: 12px; }
     details.proc .body { padding: 0 18px 18px; }
     ul.awards li { flex-direction: column; gap: 0; }
-    .reflections { grid-template-columns: 1fr; padding: 22px 18px; }
+    .reflections { aspect-ratio: 4 / 3; }
+    .float-obj { width: 17%; }
+    .float-obj .peek { width: 160px; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     body, .dark, .card, .sidenav, .theme-switch .beam { transition: none; }
     .flash.go { animation: none; }
+    .float-obj .art, .float-obj::after { animation: none; }
     .pulse, button.stamp.thunk, details.proc .body { animation: none; }
   }
 </style>
@@ -756,42 +776,55 @@
   // ---------------------------------------------------------------------
   // Medium posts, newest first. Add one object per post:
   //   { title: "Post title", url: "https://medium.com/...", date: "2026-11-20", blurb: "One sentence.", icon: "robot" }
-  // icon is "robot", "agent", or "code". Posts fill the cards in order; any
-  // card without a post says Coming soon. The newest post gets a NEW label
-  // for 30 days after its date.
+  // icon is "robot", "agent", or "code". Each post becomes a floating object
+  // on the mat; spots without a post say Coming soon on hover. The newest
+  // post gets a NEW label for 30 days after its date.
   // ---------------------------------------------------------------------
   const posts = [];
   const NEW_DAYS = 30;
 
-  const svg = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const svg = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
   const ICONS = {
     robot: svg('<rect x="5" y="8" width="14" height="11" rx="2.5"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><circle cx="9.5" cy="13" r="1.2"/><circle cx="14.5" cy="13" r="1.2"/><path d="M10 16.5h4M3 12v3M21 12v3"/>'),
     agent: svg('<circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="1.6"/><circle cx="19" cy="5" r="1.6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="19" r="1.6"/><path d="m6.2 6.2 3.6 3.6M17.8 6.2l-3.6 3.6M6.2 17.8l3.6-3.6M17.8 17.8l-3.6-3.6"/>'),
     code: svg('<path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>')
   };
   const SOON = [["robot", "Robotics"], ["agent", "AI agents"], ["code", "Code"]];
+  // Where objects float on the mat (percent of mat size) and which way the label opens.
+  const SPOTS = [
+    { l: 12, t: 18, peek: "peek-l", delay: 0 }, { l: 44, t: 40, peek: "", delay: 1.1 }, { l: 74, t: 14, peek: "peek-r", delay: 0.5 },
+    { l: 22, t: 58, peek: "peek-l", delay: 1.7 }, { l: 64, t: 56, peek: "peek-r", delay: 0.8 }
+  ];
 
   const reflections = document.getElementById("reflections");
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  posts.forEach((p, i) => {
+  function place(el, spot) {
+    el.className = `float-obj ${spot.peek}`;
+    el.style.left = spot.l + "%"; el.style.top = spot.t + "%";
+    el.style.setProperty("--delay", -spot.delay + "s");
+    reflections.appendChild(el);
+  }
+
+  posts.slice(0, SPOTS.length).forEach((p, i) => {
     const d = new Date(p.date + "T00:00:00");
     const fresh = i === 0 && (Date.now() - d) / 86400000 <= NEW_DAYS;
     const a = document.createElement("a");
-    a.className = "glass card refl";
     a.href = p.url;
     a.innerHTML = (fresh ? `<span class="sticky">NEW</span>` : "") +
       `<span class="art">${ICONS[p.icon] || ICONS[SOON[i % SOON.length][0]]}</span>` +
-      `<h3>${esc(p.title)}</h3>` +
+      `<span class="peek"><strong>${esc(p.title)}</strong>` +
       `<span class="meta">${d.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}</span>` +
-      (p.blurb ? `<p>${esc(p.blurb)}</p>` : "");
-    reflections.appendChild(a);
+      (p.blurb ? `<br>${esc(p.blurb)}` : "") + `</span>`;
+    place(a, SPOTS[i]);
   });
-  SOON.slice(posts.length).forEach(([icon, name]) => {
-    const el = document.createElement("div");
-    el.className = "glass card refl";
-    el.innerHTML = `<span class="art">${ICONS[icon]}</span><h3>${name}</h3><span class="tag">Coming soon</span>`;
-    reflections.appendChild(el);
+  SOON.slice(posts.length).forEach(([icon, name], i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", `${name}: coming soon`);
+    b.innerHTML = `<span class="art">${ICONS[icon]}</span><span class="peek"><strong>${name}</strong><span class="tag">Coming soon</span></span>`;
+    b.addEventListener("click", () => b.classList.toggle("show"));
+    place(b, SPOTS[posts.length + i]);
   });
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
