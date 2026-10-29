@@ -1,145 +1,501 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Krishiv Mehta</title>
-<meta name="description" content="Krishiv Mehta, Grade 12 IB student in Toronto. Physics, electronics, and making things work.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e8590c'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='30' font-weight='700' fill='white' text-anchor='middle'%3EKM%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Krishiv Mehta, Grade 12 IB student in Toronto. Physics, electronics, and getting things to work.">
+<meta property="og:title" content="Krishiv Mehta">
+<meta property="og:description" content="Grade 12 IB student in Toronto. Physics, electronics, and getting things to work.">
+<meta property="og:image" content="https://krishivamehta.github.io/assets/portrait.jpg">
+<meta name="theme-color" content="#0b0710">
+<script>
+  // Dark is the default. Apply a saved choice before the page paints.
+  try { if (localStorage.getItem("theme") === "light") document.documentElement.dataset.theme = "light"; } catch (e) {}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23e11d48'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230b0710'/%3E%3Ccircle cx='32' cy='32' r='15' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fbfaf8;
-    --surface: #ffffff;
-    --text: #1d1d1f;
-    --muted: #6b6b70;
-    --line: #e7e5e1;
-    --accent: #e8590c;
-    --accent-soft: #fff1e8;
+    --bg: #0b0710;
+    --surface: rgba(255, 255, 255, 0.045);
+    --surface-solid: #1d1020;
+    --text: #f3ebf2;
+    --muted: #b09aac;
+    --line: rgba(214, 160, 230, 0.14);
+    --hi: rgba(255, 255, 255, 0.08);
+    --blue: #e3262b;
+    --green: #8b5cf6;
+    --accent: #d8b4fe;
+    --accent-soft: rgba(192, 132, 252, 0.13);
+    --accent-line: rgba(192, 132, 252, 0.28);
+    --grad: linear-gradient(120deg, #e3262b 0%, #c81e3c 40%, #7c3aed 100%);
+    --ph: #8f7a8c;
+    --shadow: 0 1px 0 var(--hi) inset, 0 18px 40px -18px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.25);
+    --glow-a: rgba(227, 38, 43, 0.18);
+    --glow-b: rgba(139, 92, 246, 0.2);
+    --gridline: rgba(214, 160, 230, 0.05);
+    color-scheme: dark;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #141416;
-      --surface: #1c1c1f;
-      --text: #ededf0;
-      --muted: #9a9aa2;
-      --line: #2c2c31;
-      --accent: #ff8a4c;
-      --accent-soft: #2a1d15;
-    }
+  :root[data-theme="light"] {
+    --bg: #f6f1f4;
+    --surface: rgba(255, 255, 255, 0.72);
+    --surface-solid: #ffffff;
+    --text: #1f0d1c;
+    --muted: #6b5266;
+    --line: rgba(90, 30, 80, 0.12);
+    --hi: rgba(255, 255, 255, 0.9);
+    --blue: #b91c1c;
+    --green: #6d28d9;
+    --accent: #7e22ce;
+    --accent-soft: rgba(126, 34, 206, 0.09);
+    --accent-line: rgba(126, 34, 206, 0.25);
+    --grad: linear-gradient(120deg, #b91c1c 0%, #a3162f 40%, #6d28d9 100%);
+    --ph: #9a8597;
+    --shadow: 0 1px 0 var(--hi) inset, 0 18px 40px -20px rgba(60, 20, 55, 0.25), 0 2px 6px rgba(60, 20, 55, 0.06);
+    --glow-a: rgba(185, 28, 28, 0.11);
+    --glow-b: rgba(109, 40, 217, 0.12);
+    --gridline: rgba(90, 30, 80, 0.045);
+    color-scheme: light;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.65 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
-  main { max-width: 720px; margin: 0 auto; padding: 64px 20px 48px; }
+  /* Soft aurora light and a faint engineering grid behind everything */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(60vmax 45vmax at 10% -5%, var(--glow-a), transparent 60%),
+      radial-gradient(55vmax 45vmax at 100% 30%, var(--glow-b), transparent 60%),
+      linear-gradient(var(--gridline) 1px, transparent 1px) 0 0 / 48px 48px,
+      linear-gradient(90deg, var(--gridline) 1px, transparent 1px) 0 0 / 48px 48px,
+      var(--bg);
+  }
+  h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; }
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
 
-  header h1 { font-size: 2.6rem; line-height: 1.1; margin: 0 0 12px; letter-spacing: -0.02em; }
-  header p { margin: 0 0 24px; color: var(--muted); font-size: 1.1rem; max-width: 34em; }
-  .links { display: flex; flex-wrap: wrap; gap: 10px; }
-  .links a {
-    border: 1px solid var(--line); background: var(--surface); color: var(--text);
-    padding: 8px 14px; border-radius: 999px; font-size: 0.95rem;
+  .glass {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+    box-shadow: var(--shadow);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   }
-  .links a:hover { border-color: var(--accent); text-decoration: none; }
-  .links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-  section { margin-top: 56px; }
-  h2 {
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em;
-    color: var(--muted); margin: 0 0 16px; font-weight: 600;
+  /* ---------- Flashlight intro ---------- */
+  .dark {
+    position: fixed; inset: 0; z-index: 50; cursor: none; touch-action: none;
+    --x: 50vw; --y: 40vh; --r: 150px;
+    background: radial-gradient(circle var(--r) at var(--x) var(--y),
+      rgba(8, 3, 10, 0) 0%, rgba(8, 3, 10, 0.25) 55%, rgba(8, 3, 10, 0.975) 100%);
+    transition: opacity 0.9s ease;
   }
-  .card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-    padding: 20px 22px; margin-bottom: 12px;
+  .dark .hint {
+    position: absolute; left: 0; right: 0; bottom: 32px; text-align: center;
+    color: #e2d3df; font-size: 0.95rem; cursor: auto;
   }
-  .card h3 { margin: 0 0 4px; font-size: 1.1rem; line-height: 1.35; }
+  .dark .hint button {
+    margin-top: 10px; font: 600 0.85rem Inter, sans-serif; color: #2a0614;
+    background: linear-gradient(120deg, #fca5a5, #c4b5fd);
+    border: 0; border-radius: 999px; padding: 8px 18px; cursor: pointer;
+  }
+  body.lit .dark { opacity: 0; pointer-events: none; }
+  body.no-intro .dark { display: none; }
+
+  /* ---------- Theme switch: a flashlight ---------- */
+  .theme-switch {
+    position: fixed; top: 18px; right: 18px; z-index: 40;
+    display: flex; align-items: center; gap: 8px; cursor: pointer;
+    padding: 7px 12px 7px 10px; border-radius: 999px; color: var(--text);
+    background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    font: 500 0.72rem "JetBrains Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .theme-switch:hover { border-color: var(--accent-line); }
+  .theme-switch svg { width: 46px; height: 22px; overflow: visible; }
+  .theme-switch .beam { transition: opacity 0.35s ease; opacity: 0; }
+  .theme-switch .lens { transition: fill 0.35s ease; fill: #8aa0ad; }
+  :root:not([data-theme="light"]) .theme-switch .beam { opacity: 1; }
+  :root:not([data-theme="light"]) .theme-switch .lens { fill: #fef2f2; }
+  .flash {
+    position: fixed; inset: 0; z-index: 45; pointer-events: none; opacity: 0;
+    background: radial-gradient(120vmax 120vmax at calc(100% - 40px) 34px, rgba(255,255,255,0.85), rgba(255,255,255,0) 60%);
+  }
+  .flash.go { animation: flash 0.55s ease-out; }
+  @keyframes flash { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0; } }
+
+  /* ---------- Sidebar navigation ---------- */
+  .sidenav {
+    position: fixed; left: 28px; top: 50%; transform: translateY(-50%); z-index: 30;
+    display: none; flex-direction: column; gap: 4px;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s;
+  }
+  .sidenav.show { opacity: 1; visibility: visible; }
+  .sidenav a {
+    display: flex; align-items: center; gap: 12px; padding: 6px 10px 6px 4px; border-radius: 10px;
+    color: var(--muted); font-size: 0.86rem; text-decoration: none; transition: color 0.2s ease;
+  }
+  .sidenav a::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%; flex: none;
+    border: 1.5px solid var(--muted); transition: all 0.2s ease;
+  }
+  .sidenav a:hover { color: var(--text); }
+  .sidenav a.active { color: var(--text); }
+  .sidenav a.active::before { border-color: transparent; background: var(--grad); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .sidenav .rail { position: absolute; left: 7.5px; top: 14px; bottom: 14px; width: 1px; background: var(--line); z-index: -1; }
+  @media (min-width: 1240px) { .sidenav { display: flex; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 100svh; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; padding: 64px 20px;
+  }
+  .ring {
+    width: 236px; height: 236px; border-radius: 50%; padding: 4px;
+    background: conic-gradient(from 200deg, var(--blue), var(--green), var(--blue));
+    box-shadow: 0 0 0 10px var(--accent-soft), 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+  }
+  .portrait { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; border: 4px solid var(--bg); }
+  .hero .eyebrow { margin-top: 28px; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+  .hero h1 {
+    font-size: clamp(2.7rem, 8vw, 4.4rem); line-height: 1.02; margin: 10px 0 16px; letter-spacing: -0.025em;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { margin: 0 auto 8px; color: var(--muted); font-size: 1.14rem; max-width: 32em; }
+  .scroll-cue { margin-top: 48px; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; }
+
+  /* ---------- Sections ---------- */
+  section { margin-top: 104px; scroll-margin-top: 32px; }
+  section:first-of-type { margin-top: 0; }
+  .section-head { margin-bottom: 22px; }
+  .kicker { font: 500 0.76rem "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); }
+  .section-head h2 { font-size: 2rem; margin: 6px 0 0; letter-spacing: -0.015em; line-height: 1.2; }
+  .section-head p { margin: 6px 0 0; color: var(--muted); }
+
+  .card { padding: 22px 24px; margin-bottom: 14px; transition: transform 0.25s ease, border-color 0.25s ease; }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent-line); }
+  .card h3 { margin: 0; font-size: 1.12rem; line-height: 1.35; }
   .card p { margin: 6px 0 0; }
   .meta { color: var(--muted); font-size: 0.9rem; }
+  .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
   .tag {
-    display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-left: 8px;
-    vertical-align: 2px; background: var(--accent-soft); color: var(--accent);
+    display: inline-block; font: 500 0.68rem "JetBrains Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 6px; margin-left: 8px; vertical-align: 3px;
+    background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-line);
   }
-  .tag.new { background: var(--accent); color: #fff; }
-  a.card { display: block; color: inherit; }
-  a.card:hover { border-color: var(--accent); text-decoration: none; }
+  .ph { color: var(--ph); border-bottom: 1px dashed var(--ph); font-style: italic; }
 
-  .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  /* ---------- About / patch history ---------- */
+  .about { padding: 30px 32px; }
+  .about .lead { font-size: 1.18rem; margin: 0 0 18px; }
+  .patch { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--line); }
+  .patch li { position: relative; padding: 10px 0 10px 24px; display: grid; grid-template-columns: 10em 1fr; gap: 0 14px; }
+  .patch li::before {
+    content: ""; position: absolute; left: -5px; top: 19px; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--grad); box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+  .patch .ver { font: 500 0.82rem/1.65rem "JetBrains Mono", monospace; color: var(--accent); }
+  .about .outro { margin: 18px 0 0; color: var(--muted); }
+
+  /* ---------- Now strip ---------- */
+  .now { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; padding: 14px 20px; margin-top: 16px; }
+  .now .label { font: 500 0.8rem "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+  .now .item { color: var(--muted); display: inline-flex; align-items: center; gap: 7px; }
+  .ico { width: 18px; height: 18px; flex: none; color: var(--accent); }
+  .skill-group h3 { display: flex; align-items: center; gap: 9px; }
+  .skill-group h3 .ico { width: 20px; height: 20px; }
+  .now .item b { color: var(--text); font-weight: 500; }
+
+  /* ---------- Written reflections: one card per Medium post ---------- */
+  .reflections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .refl { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin: 0; color: inherit; }
+  a.refl:hover { text-decoration: none; }
+  .refl .art {
+    width: 64px; height: 64px; border-radius: 16px; display: grid; place-items: center;
+    background: var(--accent-soft); border: 1px solid var(--accent-line); color: var(--accent);
+  }
+  .refl .art svg { width: 34px; height: 34px; }
+  .refl .tag { margin-left: 0; }
+  .refl p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .sticky {
+    position: absolute; top: 14px; right: 14px; transform: rotate(6deg);
+    background: var(--grad); color: #fff; font: 700 0.72rem/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em;
+    padding: 7px 9px; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  /* ---------- Stoic learning ---------- */
+  .stoic { padding: 34px 36px; position: relative; overflow: hidden; }
+  .stoic::after {
+    content: "\201C"; position: absolute; right: 18px; top: -30px; font: 700 10rem/1 "Space Grotesk", serif;
+    color: var(--accent); opacity: 0.08; pointer-events: none;
+  }
+  .stoic blockquote { margin: 0; font: 500 1.45rem/1.4 "Space Grotesk", sans-serif; }
+  .stoic .who { margin-top: 10px; color: var(--muted); font-size: 0.92rem; }
+  .stoic .why { margin: 20px 0 0; padding-top: 18px; border-top: 1px solid var(--line); }
+
+  /* ---------- Interests ---------- */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .grid .card { margin: 0; }
+  .grid .wide { grid-column: 1 / -1; }
+  .card .icon {
+    width: 42px; height: 42px; padding: 9px; border-radius: 12px; margin-bottom: 12px;
+    color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-line);
+  }
+  .card ul.facts { list-style: none; padding: 0; margin: 10px 0 0; }
+  .card ul.facts li { padding: 4px 0; color: var(--muted); font-size: 0.95rem; }
+  .card ul.facts li b { color: var(--text); font-weight: 600; }
+  .stamps { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .stamp {
+    font: 600 0.74rem/1.1 "Space Grotesk", sans-serif; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); border: 1.5px solid currentColor; border-radius: 8px; padding: 8px 10px;
+    outline: 1px dashed currentColor; outline-offset: 3px; transform: rotate(var(--r, -3deg)); opacity: 0.9;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .skills .card { margin: 0; }
+  .skills .card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .chips span {
+    font-size: 0.88rem; padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--accent-soft); color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .chips span:hover { border-color: var(--accent-line); box-shadow: 0 0 0 3px var(--accent-soft); transform: translateY(-1px); }
+
+  /* ---------- Background processes ---------- */
+  .procs { align-items: start; }
+  details.proc { padding: 0; }
+  details.proc summary {
+    list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 14px;
+    align-items: start; padding: 20px 22px;
+  }
+  details.proc summary::-webkit-details-marker { display: none; }
+  details.proc summary .icon { margin: 0; }
+  details.proc summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 18px; }
+  .status { display: flex; align-items: center; gap: 7px; font: 500 0.68rem "JetBrains Mono", monospace; color: var(--muted); letter-spacing: 0.04em; }
+  .pulse { width: 7px; height: 7px; border-radius: 50%; background: #ef3b3b; box-shadow: 0 0 0 0 rgba(239, 59, 59, 0.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(239, 59, 59, 0.55); } 70% { box-shadow: 0 0 0 7px rgba(239, 59, 59, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 59, 59, 0); } }
+  details.proc h3 { margin-top: 4px; }
+  .chev {
+    width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line); position: relative; margin-top: 6px;
+    transition: transform 0.25s ease, border-color 0.2s;
+  }
+  .chev::before {
+    content: ""; position: absolute; left: 50%; top: 45%; width: 7px; height: 7px;
+    border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: translate(-50%, -50%) rotate(45deg);
+  }
+  details.proc[open] .chev { transform: rotate(180deg); border-color: var(--accent-line); }
+  details.proc summary:hover .chev { border-color: var(--accent-line); }
+  details.proc .body { padding: 0 22px 22px; animation: reveal 0.3s ease; }
+  details.proc .body > :first-child { margin-top: 0; padding-top: 16px; border-top: 1px solid var(--line); }
+  @keyframes reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+  .hint-line { color: var(--muted); font-size: 0.9rem; margin: 0 0 6px; }
+  .stamp-note { min-height: 1.4em; margin: 12px 0 0; font-size: 0.92rem; color: var(--muted); }
+
+  button.stamp { background: none; cursor: pointer; transition: transform 0.15s ease, background 0.2s; }
+  button.stamp[aria-pressed="true"] { background: var(--accent-soft); opacity: 1; }
+  button.stamp.thunk { animation: thunk 0.35s ease; }
+  @keyframes thunk { 0% { transform: rotate(var(--r)) scale(1.35); opacity: 0.4; } 60% { transform: rotate(var(--r)) scale(0.94); } 100% { transform: rotate(var(--r)) scale(1); opacity: 1; } }
+
+  .recipe { color-scheme: light; color: #2a1426; background: #fbf7fa; border-top: 4px solid #e3262b; border-radius: 12px; padding: 16px 18px; }
+  .recipe-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; align-items: baseline; }
+  .recipe-head b { font: 600 1.1rem "Space Grotesk", sans-serif; }
+  .recipe-head span { font: 500 0.75rem "JetBrains Mono", monospace; color: #6b5266; }
+  .recipe-cols { display: grid; grid-template-columns: 1fr 1.25fr; gap: 22px; margin-top: 14px; }
+  .recipe-sub { font: 500 0.72rem "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: 0.1em; color: #991b1b; margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .recipe-sub span { text-transform: none; letter-spacing: 0; color: #6b5266; }
+  .ingredients { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; }
+  .ingredients li { border-bottom: 1px solid #eadfe7; }
+  .ingredients label { display: flex; gap: 10px; align-items: center; padding: 6px 0; cursor: pointer; }
+  .ingredients input { accent-color: #991b1b; width: 16px; height: 16px; }
+  .ingredients input:checked + * , .ingredients label:has(input:checked) { color: #a08a9b; text-decoration: line-through; }
+  .steps { margin: 0; padding-left: 20px; font-size: 0.92rem; }
+  .steps li { padding: 4px 0; }
+  .credit { margin-top: 12px; font-size: 0.8rem; color: #6b5266; }
+  .credit a { color: #991b1b; }
+
+  .style-icons { display: flex; gap: 12px; margin-top: 4px; }
+  .fit-photo { display: block; width: 100%; max-width: 260px; margin-top: 10px; border-radius: 12px; border: 1px solid var(--line); }
+  button.try {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px; cursor: pointer;
+    color: var(--muted); transition: all 0.2s ease;
+  }
+  button.try svg { width: 52px; height: 52px; display: block; }
+  button.try:hover { border-color: var(--accent-line); color: var(--text); }
+  button.try[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); transform: translateY(-2px); }
+
+  /* ---------- Contact attachments ---------- */
+  .attachments { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  a.attach {
+    display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px; padding: 18px; color: var(--text); min-width: 0;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  a.attach:hover { transform: translateY(-2px); border-color: var(--accent-line); text-decoration: none; }
+  .file {
+    width: 46px; height: 54px; flex: none; border-radius: 8px; display: grid; place-items: center; position: relative;
+    font: 600 0.78rem "JetBrains Mono", monospace; color: #1a0410; background: var(--grad);
+    clip-path: polygon(0 0, 72% 0, 100% 22%, 100% 100%, 0 100%);
+  }
+  .file::after { content: ""; position: absolute; right: 0; top: 0; width: 28%; height: 22%; background: rgba(255,255,255,0.45); }
+  .file svg { width: 24px; height: 24px; }
+  .file.in { font: 700 1.05rem "Space Grotesk", sans-serif; }
+  .attach-text { order: 3; flex-basis: 100%; display: flex; flex-direction: column; min-width: 0; line-height: 1.4; }
+  .attach-text b { font-weight: 600; font-size: 0.98rem; }
+  .attach-text span { color: var(--muted); font-size: 0.84rem; overflow-wrap: break-word; }
+  .clip { order: 2; width: 20px; height: 20px; margin-left: auto; flex: none; color: var(--muted); transition: color 0.2s; }
+  a.attach:hover .clip { color: var(--accent); }
+
   ul.awards { list-style: none; padding: 0; margin: 0; }
   ul.awards li { padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; }
   ul.awards li:last-child { border-bottom: 0; }
 
-  footer { margin-top: 64px; color: var(--muted); font-size: 0.85rem; }
+  footer { margin: 110px 0 48px; text-align: center; color: var(--muted); font-size: 0.9rem; }
 
-  @media (max-width: 520px) {
-    main { padding-top: 40px; }
-    header h1 { font-size: 2.1rem; }
+  @media (max-width: 900px) and (min-width: 641px) { .attachments { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) {
+    section { margin-top: 72px; }
+    .theme-switch { top: 12px; right: 12px; }
+    .theme-switch .label { display: none; }
+    .about, .stoic { padding: 22px 20px; }
+    .patch li { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; }
+    .skills { grid-template-columns: 1fr; }
+    .attachments { grid-template-columns: 1fr; }
+    .recipe-cols { grid-template-columns: 1fr; }
+    details.proc summary { padding: 18px; gap: 12px; }
+    details.proc .body { padding: 0 18px 18px; }
     ul.awards li { flex-direction: column; gap: 0; }
+    .reflections { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    body, .dark, .card, .sidenav, .theme-switch .beam { transition: none; }
+    .flash.go { animation: none; }
+    .pulse, button.stamp.thunk, details.proc .body { animation: none; }
   }
 </style>
 </head>
 <body>
-<main>
 
-  <header>
-    <h1>Krishiv Mehta</h1>
-    <p>Grade 12 IB student in Toronto. I like physics, electronics, and getting things to work, then explaining how they work to anyone who'll listen.</p>
-    <nav class="links">
-      <a class="primary" href="Krishiv-Mehta-Resume.pdf">Resume (PDF)</a>
-      <a href="https://www.linkedin.com/in/krishiv-a-mehta">LinkedIn</a>
-      <a href="mailto:krishiv.a.mehta9@gmail.com">krishiv.a.mehta9@gmail.com</a>
-    </nav>
-  </header>
+<!-- Flashlight overlay: the page starts dark and the pointer is a flashlight -->
+<div class="dark" id="dark" aria-hidden="true">
+  <div class="hint">
+    Move your flashlight around.<br>
+    <button type="button" id="lights">Turn the lights on</button>
+  </div>
+</div>
 
-  <section id="writing">
-    <h2>Writing</h2>
-    <div id="posts"></div>
-  </section>
+<!-- Theme switch. Dark mode: flashlight on. Light mode: room lights on, flashlight off. -->
+<button class="theme-switch" id="theme" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+  <svg viewBox="0 0 46 22" aria-hidden="true">
+    <defs>
+      <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#fef2f2" stop-opacity="0.95"/>
+        <stop offset="1" stop-color="#ef3b3b" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path class="beam" d="M24 6 L46 0 L46 22 L24 16 Z" fill="url(#beamGrad)"/>
+    <rect x="1" y="7" width="15" height="8" rx="2.5" fill="currentColor" opacity="0.85"/>
+    <path d="M16 5.5 L22 3.5 L22 18.5 L16 16.5 Z" fill="currentColor"/>
+    <rect class="lens" x="21.5" y="3.5" width="2.5" height="15" rx="1"/>
+    <rect x="6" y="9" width="4" height="4" rx="1" fill="#ef3b3b"/>
+  </svg>
+  <span class="label" id="theme-label">Lights on</span>
+</button>
+<div class="flash" id="flash"></div>
 
-  <section id="build">
-    <h2>Robot build</h2>
-    <div class="card">
-      <h3>Robotics build <span class="tag">In progress</span></h3>
-      <p class="meta">Build log, wiring diagrams, and test results coming soon.</p>
+<nav class="sidenav" id="sidenav" aria-label="Sections">
+  <span class="rail"></span>
+  <a href="#about">About</a>
+  <a href="#experience">Experience</a>
+  <a href="#skills">Skills</a>
+  <a href="#writing">Written reflections</a>
+  <a href="#build">Robot build</a>
+  <a href="#stoic">Stoic learning</a>
+  <a href="#interests">Background processes</a>
+  <a href="#contact">Contact me</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="ring"><img class="portrait" src="assets/portrait.jpg" alt="Krishiv Mehta" width="228" height="228"></div>
+  <div class="eyebrow">Toronto · Grade 12 IB</div>
+  <h1>Krishiv Mehta</h1>
+  <p>Hi, I'm Krishiv. I love physics, electronics, and building things that work, from circuits to software. Then I share it all with anyone who's down to listen.</p>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<main class="wrap">
+
+  <section id="about">
+    <div class="section-head">
+      <div class="kicker">About</div>
+      <h2>The patch history</h2>
+    </div>
+    <div class="glass about">
+      <p class="lead">My first engineering job was holding the flashlight. Here's the patch history:</p>
+      <ol class="patch">
+        <li><span class="ver">Version 1.0</span> <span>At 7 years old, I held the flashlight while my dad swapped the stereo in an old car for a new touch screen one. Once the wiring was right, it came to life. Suddenly the car felt fancy, with a really cool display that could play all kinds of music. I was hooked.</span></li>
+        <li><span class="ver">Version 2.0</span> <span>Moved from wiring to writing code. Now I build software too, with Python, Java, C++, and AI tools like Claude Code and Replit. Getting a program to run still feels like that stereo turning on.</span></li>
+        <li><span class="ver">Known issues</span> <span>Everyone keeps telling me entry-level tech is oversaturated. I considered this carefully and decided to ignore it.</span></li>
+        <li><span class="ver">Coming soon</span> <span>More building, more breaking, more fixing. When you love technology that's changing faster than it ever has with AI, the only real option is to keep chasing it.</span></li>
+        <li><span class="ver">Background processes</span> <span>Basketball, and explaining things to people who didn't ask. <a href="#interests">More below.</a></span></li>
+      </ol>
+      <p class="outro">I still think the flashlight job matters more than it looks. It quite literally illuminated my path. Someone has to see clearly before anything gets built, right?</p>
+    </div>
+
+    <!-- Now strip: replace each .ph with real text when ready -->
+    <div class="glass now" aria-label="What I'm doing now">
+      <span class="label">Now</span>
+      <span class="item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2z"/><path d="M4 20a2 2 0 0 0 2 2h13v-4"/><path d="M9 7h6"/></svg>Reading <b>Sapiens</b></span>
+      <span class="item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="13" r="6"/><path d="M16 13h6"/><path d="M8 4c0-1 1-1 1-2M12 4c0-1 1-1 1-2"/></svg>Cooking <b>Tofu and Bean Burritos</b></span>
+      <span class="item"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9 12 4l10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/><path d="M22 9v6"/></svg>Working on <b>University Applications</b></span>
     </div>
   </section>
 
   <section id="experience">
-    <h2>Experience</h2>
+    <div class="section-head">
+      <div class="kicker">Experience</div>
+      <h2>Where I've been building and sharpening my skills</h2>
+    </div>
 
-    <div class="card">
+    <div class="glass card">
       <div class="row"><h3>Co-President, Computer Science Club</h3><span class="meta">Aug 2025 to now</span></div>
       <div class="meta">Maple High School</div>
       <p>Co-taught 20+ lessons to a 23-member club, from loops and data types to AI ethics. More than half the club went on to write the Canadian Computing Competition.</p>
     </div>
 
-    <div class="card">
+    <div class="glass card">
+      <div class="row"><h3>Executive, Lesson Planning, Robotics Club</h3><span class="meta">Sep 2026 to now</span></div>
+      <div class="meta">Maple High School</div>
+      <p>Writing the C++ code behind the club's robotics lessons for 30+ Arduino kits arriving in November. I build and test the example programs members will run, change, and debug, and plan lessons that show how the code and electronics work together.</p>
+    </div>
+
+    <div class="glass card">
       <div class="row"><h3>Student, The Knowledge Society</h3><span class="meta">Aug 2026 to now</span></div>
       <p>Writing a research paper on how swarms of small robots could study ecosystems and microbiomes while disturbing them as little as possible.</p>
     </div>
 
-    <div class="card">
+    <div class="glass card">
       <div class="row"><h3>Assistant Camp Counselor, STEM Camp</h3><span class="meta">Summer 2025</span></div>
       <div class="meta">Vellore Village Community Centre</div>
       <p>Taught chemistry, physics, and math to 35 to 40 campers aged 4 to 7, turning experiments like foaming acid-base reactions and pulleys into explanations they could follow.</p>
     </div>
 
-    <div class="card">
+    <div class="glass card">
       <div class="row"><h3>Tae Kwon Do Instructor</h3><span class="meta">2019 to 2020</span></div>
       <div class="meta">Pulse Academy</div>
       <p>Taught a class of 16 kids aged 7 to 10; 12 of them moved up a belt. Black belt after 7 years of training.</p>
     </div>
-  </section>
 
-  <section id="awards">
-    <h2>Awards and competitions</h2>
-    <div class="card">
+    <div class="glass card">
+      <h3 style="margin-bottom:6px">Awards and competitions</h3>
       <ul class="awards">
         <li><span>Principal's Honour Roll, 97% average</span><span class="meta">Grade 11</span></li>
         <li><span>Physics Award and Philosophy Award</span><span class="meta">Grade 11</span></li>
@@ -150,38 +506,410 @@
     </div>
   </section>
 
+  <section id="skills">
+    <div class="section-head">
+      <div class="kicker">Skills</div>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skills">
+      <div class="glass card skill-group">
+        <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg>Hardware</h3>
+        <div class="chips"><span>Arduino</span><span>Electronics</span><span>Breadboard circuits</span><span>Sensors and motors</span></div>
+      </div>
+      <div class="glass card skill-group">
+        <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>Programming</h3>
+        <div class="chips"><span>C++</span><span>Python</span><span>Java</span></div>
+      </div>
+      <div class="glass card skill-group">
+        <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20l4-4 4 4M7 9h6M7 12h9"/></svg>Teaching and leadership</h3>
+        <div class="chips"><span>Teaching</span><span>Lesson planning</span><span>Public speaking</span><span>Leadership</span><span>Research</span></div>
+      </div>
+      <div class="glass card skill-group">
+        <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5L22 14l-8 8-2.3-2.3a4 4 0 0 0-5-5L2 10l8-8z"/></svg>Tools</h3>
+        <div class="chips"><span>Claude Code</span><span>Replit</span><span>Google NotebookLM</span><span>Obsidian</span><span>Notion</span><span>Google Workspace</span></div>
+      </div>
+      <div class="glass card skill-group">
+        <h3><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Languages</h3>
+        <div class="chips"><span>English</span><span>Gujarati</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="writing">
+    <div class="section-head">
+      <div class="kicker">On the workbench</div>
+      <h2>Written reflections</h2>
+      <p>Posts on Medium about what I'm building and learning.</p>
+    </div>
+    <div class="reflections" id="reflections"></div>
+  </section>
+
+  <section id="build">
+    <div class="section-head">
+      <div class="kicker">In the garage</div>
+      <h2>Robot build</h2>
+    </div>
+    <div class="glass card">
+      <h3>Robotics build <span class="tag">Coming Dec 2026</span></h3>
+      <p class="meta">Build log, wiring diagrams, and test results, coming December 2026.</p>
+    </div>
+  </section>
+
+  <section id="stoic">
+    <div class="section-head">
+      <div class="kicker">Philosophy</div>
+      <h2>A critical Stoic learning</h2>
+    </div>
+    <div class="glass stoic">
+      <blockquote>Every man's life lies within the present; for the past is spent and done with, and the future is uncertain.</blockquote>
+      <div class="who">Marcus Aurelius, Meditations, Book 3, Section 10</div>
+      <p class="why">It changed the way I work. The past is already done and the future isn't here yet, so the only thing I can actually act on is the task in front of me. Instead of replaying a bad test or stressing about a deadline weeks away, I put my full attention on the next step. That keeps me calmer and makes me a lot more productive, whether I'm debugging code or planning a lesson.</p>
+    </div>
+  </section>
+
+  <section id="interests">
+    <div class="section-head">
+      <div class="kicker">Background processes</div>
+      <h2>Running in the background</h2>
+      <p>Click a process to inspect it.</p>
+    </div>
+
+    <div class="grid procs">
+      <details class="glass card proc">
+        <summary>
+          <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M18 3 6 18h9l-2 11 12-15h-9z"/></svg>
+          <div class="sum-text">
+            <div class="status"><span class="pulse"></span>build.exe · running</div>
+            <h3>Build</h3>
+            <p class="meta">Robots, the CS Club, science, and math.</p>
+          </div>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="body">
+          <ul class="facts">
+            <li><b>Geeking out about:</b> a flying Tesla car</li>
+            <li><b>Gaming with friends:</b> GTA 6 is coming out. Definitely playing that.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="glass card proc">
+        <summary>
+          <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 27 12 12l5 7 4-5 8 13z"/><circle cx="23" cy="7" r="2.5"/></svg>
+          <div class="sum-text">
+            <div class="status"><span class="pulse"></span>move.exe · running</div>
+            <h3>Move</h3>
+            <p class="meta">Basketball, camping, hiking, and exploring cities.</p>
+          </div>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="body">
+          <p class="hint-line">Places I've been. Tap a stamp.</p>
+          <div class="stamps" id="stamps">
+            <button type="button" class="stamp" style="--r:-4deg" aria-pressed="false" data-memory="Watching the Eiffel Tower glitter at night and taking a long exposure picture of it.">Paris</button>
+            <button type="button" class="stamp" style="--r:3deg" aria-pressed="false" data-memory="Seeing Lady Liberty for the first time and lowkey being kinda disappointed by how small she is after all the hype in the movies.">New York City</button>
+            <button type="button" class="stamp" style="--r:-2deg" aria-pressed="false" data-memory="Seeing family, and finding all the cool versions of my favourite Western fast food chains with their Asian menus. I was so excited.">Mumbai</button>
+            <button type="button" class="stamp" style="--r:5deg" aria-pressed="false" data-memory="Being in the middle of a lake with my dad when our canoe flipped. I couldn't stop laughing.">Algonquin Park</button>
+            <button type="button" class="stamp" style="--r:-3deg" aria-pressed="false" data-memory="Feeling incredibly small, hearing the cow bells, and feeling like I wasn't on Earth anymore.">Swiss Alps</button>
+          </div>
+          <p class="stamp-note" id="stamp-note" aria-live="polite"></p>
+        </div>
+      </details>
+
+      <details class="glass card proc wide">
+        <summary>
+          <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h20a8 8 0 0 1-8 8H11a8 8 0 0 1-8-8z"/><path d="M23 17h6"/><path d="M10 10c0-2 2-2 2-4M15 10c0-2 2-2 2-4"/></svg>
+          <div class="sum-text">
+            <div class="status"><span class="pulse"></span>make.exe · running</div>
+            <h3>Make</h3>
+            <p class="meta">Vegetarian cooking. Current favourite: tofu protein burritos.</p>
+          </div>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="body">
+          <div class="recipe">
+            <div class="recipe-head">
+              <b>Southwest tofu burritos</b>
+              <span>Makes 8 · about 12 g protein each · 45 min</span>
+            </div>
+            <div class="recipe-cols">
+              <div>
+                <div class="recipe-sub">Ingredients <span id="ing-count">0 of 9 ready</span></div>
+                <ul class="ingredients" id="ingredients">
+                  <li><label><input type="checkbox"> 1 cup brown rice</label></li>
+                  <li><label><input type="checkbox"> 14 oz block extra-firm tofu</label></li>
+                  <li><label><input type="checkbox"> 3 Tbsp taco seasoning</label></li>
+                  <li><label><input type="checkbox"> 2 Tbsp lime juice (about 1 lime)</label></li>
+                  <li><label><input type="checkbox"> 15 oz can black beans, rinsed</label></li>
+                  <li><label><input type="checkbox"> 1 large avocado</label></li>
+                  <li><label><input type="checkbox"> 1 cup salsa</label></li>
+                  <li><label><input type="checkbox"> 8 large tortillas</label></li>
+                  <li><label><input type="checkbox"> Toppings: cilantro, corn, hot sauce</label></li>
+                </ul>
+              </div>
+              <div>
+                <div class="recipe-sub">Steps</div>
+                <ol class="steps">
+                  <li>Simmer the rice in 1&frac34; cups water, covered, for 35 to 40 minutes.</li>
+                  <li>Press the water out of the tofu, crumble it, and toss it with the taco seasoning and lime juice.</li>
+                  <li>Brown the tofu in a non-stick pan over medium-high heat for 6 to 7 minutes, then stir in the beans for a minute or two.</li>
+                  <li>Warm the tortillas, fill each with rice, tofu and beans, salsa, and avocado, then fold in the ends and roll tight.</li>
+                  <li>Optional: crisp the burritos in a hot pan, 3 to 4 minutes a side.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="credit">Adapted from <a href="https://www.thegardengrazer.com/southwest-tofu-burrito/" target="_blank" rel="noopener">Southwest Tofu Burrito by The Garden Grazer</a>.</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="glass card proc">
+        <summary>
+          <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M11 4 16 8l5-4 7 4 2 13-5 1v7H7v-7l-5-1L4 8z"/><path d="M16 8v21"/></svg>
+          <div class="sum-text">
+            <div class="status"><span class="pulse"></span>style.exe · running</div>
+            <h3>Style</h3>
+            <p class="meta">Cool jackets, sneakers, and skin and hair care.</p>
+          </div>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="body">
+          <p class="hint-line">Try something on.</p>
+          <div class="style-icons">
+            <button type="button" class="try" data-item="jacket" data-fav="Toronto Maple Leafs varsity jacket" data-alt="Krishiv from behind, wearing his Toronto Maple Leafs varsity jacket" data-photo="assets/jacket.jpg" aria-pressed="false" aria-label="Favourite jacket">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M22 6 32 14l10-8 14 8 4 26-10 2v18H14V42L4 40 8 14z"/><path d="M32 14v46M27 30h-6M43 30h-6"/></svg>
+            </button>
+            <button type="button" class="try" data-item="sneakers" data-fav="Jordan 4 Retro Blue Thunder" data-photo="assets/sneakers.jpg" aria-pressed="false" aria-label="Favourite sneakers">
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"><path d="M4 44V34q0-6 6-6h12l8-8q3-3 6 0l8 10q12 2 16 8v6z"/><path d="M4 44h56v5H4z"/><path d="M27 27l4 4M31 23l4 4"/></svg>
+            </button>
+          </div>
+          <p class="stamp-note" id="try-note" aria-live="polite"></p>
+        </div>
+      </details>
+
+      <details class="glass card proc">
+        <summary>
+          <svg class="icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M16 26c-4-4-4-12 0-18 4 6 4 14 0 18z"/><path d="M16 26c-6-1-10-6-10-12 5 1 9 5 10 12zM16 26c6-1 10-6 10-12-5 1-9 5-10 12z"/><path d="M4 26h24"/></svg>
+          <div class="sum-text">
+            <div class="status"><span class="pulse"></span>roots.exe · running</div>
+            <h3>Roots and mind</h3>
+            <p class="meta">Hinduism, garba, Stoic philosophy, reading, and movies.</p>
+          </div>
+          <span class="chev" aria-hidden="true"></span>
+        </summary>
+        <div class="body">
+          <ul class="facts">
+            <li><b>Garba:</b> any and all kinds are fun. I've been going since I was a baby.</li>
+            <li><b>Books:</b> Sapiens and The Daily Stoic</li>
+            <li><b>Movies:</b> The Amazing Spider-Man and The Dark Knight</li>
+            <li><b>Stoicism:</b> <a href="#stoic">see the Stoic learning above</a></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <div class="kicker">Get in touch</div>
+      <h2>Contact me</h2>
+    </div>
+    <div class="attachments">
+      <a class="glass attach" href="Krishiv-Mehta-Resume.pdf" download>
+        <span class="file pdf">PDF</span>
+        <span class="attach-text"><b>Resume</b><span>PDF · 32 KB</span></span>
+        <svg class="clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>
+      </a>
+      <a class="glass attach" href="https://www.linkedin.com/in/krishiv-a-mehta" target="_blank" rel="noopener">
+        <span class="file in">in</span>
+        <span class="attach-text"><b>LinkedIn</b><span>in/krishiv-a-mehta</span></span>
+        <svg class="clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="glass attach" href="mailto:krishiv.a.mehta9@gmail.com">
+        <span class="file mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+        <span class="attach-text"><b>Email</b><span>krishiv.a.mehta9@gmail.com</span></span>
+        <svg class="clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </section>
+
   <footer>Krishiv Mehta, Toronto</footer>
 </main>
 
 <script>
+  // ---------------------------------------------------------------------
   // Medium posts, newest first. Add one object per post:
-  //   { title: "Post title", url: "https://medium.com/...", date: "2026-11-20", blurb: "One sentence." }
-  // The newest post gets a NEW label for 30 days after its date.
+  //   { title: "Post title", url: "https://medium.com/...", date: "2026-11-20", blurb: "One sentence.", icon: "robot" }
+  // icon is "robot", "agent", or "code". Posts fill the cards in order; any
+  // card without a post says Coming soon. The newest post gets a NEW label
+  // for 30 days after its date.
+  // ---------------------------------------------------------------------
   const posts = [];
-
   const NEW_DAYS = 30;
-  const box = document.getElementById("posts");
 
-  if (posts.length === 0) {
-    box.innerHTML =
-      '<div class="card"><h3>Swarm robotics research paper <span class="tag">Coming soon</span></h3>' +
-      '<p class="meta">How swarms of small robots could study ecosystems and microbiomes without disturbing them. Publishing on Medium.</p></div>';
-  } else {
-    posts.forEach((p, i) => {
-      const d = new Date(p.date + "T00:00:00");
-      const fresh = i === 0 && (Date.now() - d) / 86400000 <= NEW_DAYS;
-      const a = document.createElement("a");
-      a.className = "card";
-      a.href = p.url;
-      a.innerHTML =
-        "<h3></h3><div class='meta'></div>" + (p.blurb ? "<p></p>" : "");
-      a.querySelector("h3").textContent = p.title;
-      if (fresh) a.querySelector("h3").insertAdjacentHTML("beforeend", ' <span class="tag new">New</span>');
-      a.querySelector(".meta").textContent =
-        d.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" }) + " on Medium";
-      if (p.blurb) a.querySelector("p").textContent = p.blurb;
-      box.appendChild(a);
+  const svg = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  const ICONS = {
+    robot: svg('<rect x="5" y="8" width="14" height="11" rx="2.5"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><circle cx="9.5" cy="13" r="1.2"/><circle cx="14.5" cy="13" r="1.2"/><path d="M10 16.5h4M3 12v3M21 12v3"/>'),
+    agent: svg('<circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="1.6"/><circle cx="19" cy="5" r="1.6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="19" r="1.6"/><path d="m6.2 6.2 3.6 3.6M17.8 6.2l-3.6 3.6M6.2 17.8l3.6-3.6M17.8 17.8l-3.6-3.6"/>'),
+    code: svg('<path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>')
+  };
+  const SOON = [["robot", "Robotics"], ["agent", "AI agents"], ["code", "Code"]];
+
+  const reflections = document.getElementById("reflections");
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  posts.forEach((p, i) => {
+    const d = new Date(p.date + "T00:00:00");
+    const fresh = i === 0 && (Date.now() - d) / 86400000 <= NEW_DAYS;
+    const a = document.createElement("a");
+    a.className = "glass card refl";
+    a.href = p.url;
+    a.innerHTML = (fresh ? `<span class="sticky">NEW</span>` : "") +
+      `<span class="art">${ICONS[p.icon] || ICONS[SOON[i % SOON.length][0]]}</span>` +
+      `<h3>${esc(p.title)}</h3>` +
+      `<span class="meta">${d.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}</span>` +
+      (p.blurb ? `<p>${esc(p.blurb)}</p>` : "");
+    reflections.appendChild(a);
+  });
+  SOON.slice(posts.length).forEach(([icon, name]) => {
+    const el = document.createElement("div");
+    el.className = "glass card refl";
+    el.innerHTML = `<span class="art">${ICONS[icon]}</span><h3>${name}</h3><span class="tag">Coming soon</span>`;
+    reflections.appendChild(el);
+  });
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------------------------------------------------------------------
+  // Theme switch (dark by default; the choice is remembered on this device)
+  // ---------------------------------------------------------------------
+  const root = document.documentElement;
+  const themeBtn = document.getElementById("theme");
+  const themeLabel = document.getElementById("theme-label");
+  const flash = document.getElementById("flash");
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+  function syncThemeUI() {
+    const light = root.dataset.theme === "light";
+    const next = light ? "Switch to dark mode" : "Switch to light mode";
+    themeBtn.setAttribute("aria-label", next);
+    themeBtn.title = next;
+    themeLabel.textContent = light ? "Lights off" : "Lights on";
+    themeMeta.content = light ? "#f6f1f4" : "#0b0710";
+  }
+  themeBtn.addEventListener("click", () => {
+    const toLight = root.dataset.theme !== "light";
+    root.dataset.theme = toLight ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch (e) {}
+    if (toLight && !reduced) {
+      flash.classList.remove("go"); void flash.offsetWidth; flash.classList.add("go");
+    }
+    syncThemeUI();
+  });
+  syncThemeUI();
+
+  // ---------------------------------------------------------------------
+  // Sidebar: highlight the section in view, show it once past the hero
+  // ---------------------------------------------------------------------
+  const sidenav = document.getElementById("sidenav");
+  const navLinks = [...sidenav.querySelectorAll("a")];
+  const sections = navLinks.map(a => document.querySelector(a.getAttribute("href")));
+  function updateNav() {
+    const y = window.innerHeight * 0.35;
+    sidenav.classList.toggle("show", window.scrollY > window.innerHeight * 0.6);
+    let current = 0;
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top <= y) current = i; });
+    // At the very bottom, the last section can't scroll up far enough, so light it directly
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) current = sections.length - 1;
+    navLinks.forEach((a, i) => a.classList.toggle("active", i === current));
+  }
+  window.addEventListener("scroll", updateNav, { passive: true });
+  window.addEventListener("resize", updateNav);
+  updateNav();
+
+  // ---------------------------------------------------------------------
+  // Background processes: stamps, try-on, recipe checklist
+  // ---------------------------------------------------------------------
+  const stampNote = document.getElementById("stamp-note");
+  document.querySelectorAll("button.stamp").forEach(b => {
+    b.addEventListener("click", () => {
+      const on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", on);
+      if (on && !reduced) { b.classList.remove("thunk"); void b.offsetWidth; b.classList.add("thunk"); }
+      stampNote.innerHTML = on ? `<b>${b.textContent}:</b> I remember ${b.dataset.memory.charAt(0).toLowerCase() + b.dataset.memory.slice(1)}` : "";
     });
+  });
+
+  const tryNote = document.getElementById("try-note");
+  const tries = [...document.querySelectorAll("button.try")];
+  tries.forEach(b => {
+    b.addEventListener("click", () => {
+      const on = b.getAttribute("aria-pressed") !== "true";
+      tries.forEach(t => t.setAttribute("aria-pressed", "false"));
+      b.setAttribute("aria-pressed", on);
+      const fav = b.dataset.fav ? esc(b.dataset.fav) : `<span class="ph">coming soon</span>`;
+      const photo = b.dataset.photo ? `<img class="fit-photo" src="${b.dataset.photo}" alt="${esc(b.dataset.alt || b.dataset.fav)}">` : "";
+      tryNote.innerHTML = on ? `<b>Favourite ${b.dataset.item}:</b> ${fav}${photo}` : "";
+    });
+  });
+
+  const ing = [...document.querySelectorAll("#ingredients input")];
+  const ingCount = document.getElementById("ing-count");
+  const countIng = () => {
+    const n = ing.filter(i => i.checked).length;
+    ingCount.textContent = n === ing.length ? "All set. Start cooking." : `${n} of ${ing.length} ready`;
+  };
+  ing.forEach(i => i.addEventListener("change", countIng));
+
+  // ---------------------------------------------------------------------
+  // Flashlight intro
+  // ---------------------------------------------------------------------
+  const dark = document.getElementById("dark");
+  const body = document.body;
+  let timer, sweeping = true;
+
+  function lightsOn() {
+    clearTimeout(timer); sweeping = false;
+    body.classList.add("lit");
+  }
+  function lightsOff(auto) {
+    body.classList.remove("lit", "no-intro");
+    sweeping = !!auto;
+    clearTimeout(timer);
+    timer = setTimeout(lightsOn, auto ? 4500 : 6000);
+    if (auto) sweep();
+  }
+  function aim(x, y) {
+    dark.style.setProperty("--x", x + "px");
+    dark.style.setProperty("--y", y + "px");
+  }
+  // On load the beam drifts in from the left and settles on the portrait.
+  function sweep() {
+    const img = document.querySelector(".portrait").getBoundingClientRect();
+    const tx = img.left + img.width / 2, ty = img.top + img.height / 2;
+    const sx = -120, sy = window.innerHeight * 0.75;
+    const t0 = performance.now(), dur = 1600;
+    (function step(now) {
+      if (!sweeping) return;
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      aim(sx + (tx - sx) * e, sy + (ty - sy) * e - Math.sin(e * Math.PI) * 80);
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+
+  if (reduced) {
+    body.classList.add("no-intro", "lit");
+  } else {
+    lightsOff(true);
+    dark.addEventListener("pointermove", e => {
+      sweeping = false;
+      aim(e.clientX, e.clientY);
+      clearTimeout(timer);
+      timer = setTimeout(lightsOn, 2200);
+    });
+    document.getElementById("lights").addEventListener("click", lightsOn);
+    window.addEventListener("keydown", () => { if (!body.classList.contains("lit")) lightsOn(); });
+    window.addEventListener("wheel", () => { if (!body.classList.contains("lit")) lightsOn(); }, { passive: true });
   }
 </script>
 </body>
