@@ -230,8 +230,7 @@
     filter: drop-shadow(0 6px 6px rgba(0,0,0,0.45));
   }
   .bench-obj svg { width: 100%; height: auto; display: block; }
-  .bench-obj.decor { cursor: default; pointer-events: none; }
-  .bench-obj:not(.decor):hover { transform: rotate(var(--rot, 0deg)) translateY(-3px); filter: drop-shadow(0 10px 10px rgba(0,0,0,0.45)); }
+  .bench-obj:hover { transform: rotate(var(--rot, 0deg)) translateY(-3px); filter: drop-shadow(0 10px 10px rgba(0,0,0,0.45)); }
   /* Picked up: lifted off the mat, bigger, with a softer shadow further below */
   .bench-obj.up {
     z-index: 4; cursor: grabbing;
@@ -239,6 +238,13 @@
     filter: drop-shadow(0 26px 22px rgba(0,0,0,0.5));
   }
   .bench-obj:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
+  .bench-callout {
+    position: absolute; left: 3%; bottom: 5%; z-index: 1; display: flex; align-items: center; gap: 8px;
+    padding: 8px 12px; border-radius: 10px; transform: rotate(-1.5deg);
+    background: rgba(255, 255, 255, 0.92); color: #102a55; font: 600 0.82rem "Space Grotesk", sans-serif;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.35);
+  }
+  .bench-callout svg { width: 18px; height: 18px; flex: none; }
   .preview {
     position: absolute; z-index: 6; width: 250px; display: none; color: var(--text); text-align: left;
     background: var(--surface-solid); border: 1px solid var(--line); border-radius: 14px;
@@ -747,7 +753,7 @@
     <div class="attachments">
       <a class="glass attach" href="Krishiv-Mehta-Resume.pdf" download>
         <span class="file pdf">PDF</span>
-        <span class="attach-text"><b>Resume</b><span>PDF · 32 KB</span></span>
+        <span class="attach-text"><b>Resume</b><span>PDF · 2 pages · 35 KB</span></span>
         <svg class="clip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>
       </a>
       <a class="glass attach" href="https://www.linkedin.com/in/krishiv-a-mehta" target="_blank" rel="noopener">
@@ -782,9 +788,7 @@
   const ART = {
     robot: `<svg viewBox="0 0 130 130"><rect x="8" y="34" width="16" height="62" rx="5" fill="#1f2430"/><rect x="106" y="34" width="16" height="62" rx="5" fill="#1f2430"/><g stroke="#3a4150" stroke-width="2">${[42,52,62,72,82].map(y=>`<path d="M8 ${y}h16M106 ${y}h16"/>`).join("")}</g><rect x="22" y="24" width="86" height="82" rx="14" fill="#e3262b"/><rect x="30" y="32" width="70" height="66" rx="10" fill="#c81e3c"/><circle cx="50" cy="56" r="10" fill="#f8fafc"/><circle cx="80" cy="56" r="10" fill="#f8fafc"/><circle cx="50" cy="56" r="4.5" fill="#111827"/><circle cx="80" cy="56" r="4.5" fill="#111827"/><rect x="46" y="76" width="38" height="8" rx="4" fill="#fecaca"/><path d="M65 24V10" stroke="#9aa0a8" stroke-width="3"/><circle cx="65" cy="8" r="5" fill="#fde047"/></svg>`,
     notebook: `<svg viewBox="0 0 120 150"><rect x="12" y="6" width="100" height="138" rx="6" fill="#4c1d95"/><rect x="20" y="6" width="92" height="138" rx="4" fill="#7c3aed"/><rect x="36" y="34" width="62" height="24" rx="3" fill="#f5f3ff"/><text x="67" y="51" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#4c1d95">AI</text><g stroke="#ddd6fe" stroke-width="2" fill="none"><circle cx="50" cy="96" r="5"/><circle cx="84" cy="88" r="5"/><circle cx="72" cy="118" r="5"/><path d="M55 95l24-6M53 100l15 14M82 93l-8 20"/></g><g fill="none" stroke="#d6dde2" stroke-width="3">${[18,32,46,60,74,88,102,116,130].map(y=>`<circle cx="16" cy="${y}" r="5"/>`).join("")}</g></svg>`,
-    board: `<svg viewBox="0 0 150 110"><rect x="4" y="4" width="142" height="102" rx="8" fill="#0f7a4a"/><g stroke="#e0b252" stroke-width="2.5" fill="none"><path d="M20 22h40v26h50"/><path d="M20 90h30V62h70"/><path d="M132 22v64"/></g><rect x="62" y="32" width="36" height="28" rx="2" fill="#15171c"/><text x="80" y="51" text-anchor="middle" font-family="monospace" font-size="12" fill="#9ae6b4">&lt;/&gt;</text><rect x="26" y="70" width="18" height="12" rx="2" fill="#15171c"/><rect x="104" y="72" width="22" height="14" rx="2" fill="#c0c4cc"/><g fill="#e0b252">${[16,34,52,70,88,106,124].map(x=>`<circle cx="${x}" cy="10" r="3"/>`).join("")}</g></svg>`,
-    screwdriver: `<svg viewBox="0 0 170 40"><rect x="6" y="8" width="62" height="24" rx="12" fill="#f59e0b"/><g stroke="#d97706" stroke-width="3"><path d="M20 10v20M34 10v20M48 10v20"/></g><rect x="66" y="17" width="88" height="6" fill="#b9bcc2"/><path d="M154 15 l10 5 -10 5z" fill="#9aa0a8"/></svg>`,
-    coil: `<svg viewBox="0 0 130 130"><g fill="none" stroke="#c8733a" stroke-width="6">${[56,48,40,32,24].map(r=>`<circle cx="65" cy="65" r="${r}"/>`).join("")}</g><circle cx="65" cy="65" r="14" fill="#4a3324"/><path d="M121 65 C 128 90, 110 112, 96 124" fill="none" stroke="#c8733a" stroke-width="6" stroke-linecap="round"/></svg>`
+    board: `<svg viewBox="0 0 150 110"><rect x="4" y="4" width="142" height="102" rx="8" fill="#0f7a4a"/><g stroke="#e0b252" stroke-width="2.5" fill="none"><path d="M20 22h40v26h50"/><path d="M20 90h30V62h70"/><path d="M132 22v64"/></g><rect x="62" y="32" width="36" height="28" rx="2" fill="#15171c"/><text x="80" y="51" text-anchor="middle" font-family="monospace" font-size="12" fill="#9ae6b4">&lt;/&gt;</text><rect x="26" y="70" width="18" height="12" rx="2" fill="#15171c"/><rect x="104" y="72" width="22" height="14" rx="2" fill="#c0c4cc"/><g fill="#e0b252">${[16,34,52,70,88,106,124].map(x=>`<circle cx="${x}" cy="10" r="3"/>`).join("")}</g></svg>`
   };
   // The three topics, where each object lies (percent of the mat), and how it's turned.
   const TOPICS = {
@@ -802,14 +806,10 @@
     reflections.appendChild(el);
   }
 
-  // Decorations that can't be picked up.
-  [["screwdriver", { l: 18, t: 74, w: 22, rot: 12 }], ["coil", { l: 84, t: 10, w: 11, rot: 0 }]].forEach(([art, spot]) => {
-    const d = document.createElement("div");
-    d.className = "bench-obj decor";
-    d.setAttribute("aria-hidden", "true");
-    d.innerHTML = ART[art];
-    lay(d, spot);
-  });
+  const callout = document.createElement("div");
+  callout.className = "bench-callout";
+  callout.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11.5v-2a1.5 1.5 0 0 1 3 0V12M14 10.5a1.5 1.5 0 0 1 3 0V12M17 11.5a1.5 1.5 0 0 1 3 0V16a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L4.3 15a1.6 1.6 0 0 1 2.6-1.8L8 15"/></svg>Pick up an item off the workbench`;
+  reflections.appendChild(callout);
 
   let preview = document.createElement("div");
   preview.className = "preview";
