@@ -781,7 +781,10 @@
   // post. Objects without a post say Coming soon. The newest post gets a NEW
   // note for 30 days after its date.
   // ---------------------------------------------------------------------
-  const posts = [];
+  const posts = [
+    { title: "How a swarm of drones could find wildfires before anyone reports them", url: "https://medium.com/@krishiv.a.mehta9/how-a-swarm-of-drones-could-find-wildfires-before-anyone-reports-them-ff85659d9026", date: "2026-10-29", blurb: "How a swarm of small drones could spot a wildfire while it's still small enough to stop.", topic: "robotics" },
+    { title: "Not everything has to click before you build", url: "https://medium.com/@krishiv.a.mehta9/not-everything-has-to-click-before-you-build-6763dd1badbd", date: "2026-10-29", blurb: "What Dennis Crowley's talk at dev/ai/nyc showed me about building with unfinished tools and ideas.", topic: "agents" }
+  ];
   const NEW_DAYS = 30;
 
   // Top-down drawings of things on the bench.
