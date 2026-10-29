@@ -212,54 +212,49 @@
   .skill-group h3 .ico { width: 20px; height: 20px; }
   .now .item b { color: var(--text); font-weight: 500; }
 
-  /* ---------- Written reflections: floating objects on a cutting mat ---------- */
+  /* ---------- Written reflections: objects lying on a dark blue workbench ---------- */
   .reflections {
     position: relative; aspect-ratio: 16 / 9; border-radius: 20px;
     background:
-      linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 5% 8.889%,
-      linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 5% 8.889%,
-      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 1% 1.778%,
-      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 1% 1.778%,
-      linear-gradient(160deg, #5b1035, #3f0d3a 60%, #2a0b36);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -24px 50px rgba(0,0,0,0.25), 0 30px 60px -28px rgba(0,0,0,0.6);
+      linear-gradient(rgba(255,255,255,0.09) 1px, transparent 1px) 0 0 / 5% 8.889%,
+      linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px) 0 0 / 5% 8.889%,
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 1% 1.778%,
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px) 0 0 / 1% 1.778%,
+      linear-gradient(160deg, #173a6e, #102a55 60%, #0b1f42);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -24px 50px rgba(0,0,0,0.3), 0 30px 60px -28px rgba(0,0,0,0.6);
     border: 1px solid rgba(255,255,255,0.08);
   }
-  .float-obj {
-    position: absolute; width: 12%; aspect-ratio: 1; padding: 0; border: 0; background: none;
-    color: #f3e8ff; cursor: pointer; display: block;
+  .bench-obj {
+    position: absolute; padding: 0; border: 0; background: none; cursor: grab; display: block;
+    transform: rotate(var(--rot, 0deg)); transition: transform 0.22s ease, filter 0.22s ease;
+    filter: drop-shadow(0 6px 6px rgba(0,0,0,0.45));
   }
-  .float-obj .art {
-    display: block; width: 100%; height: 100%;
-    filter: drop-shadow(0 0 10px rgba(216, 180, 254, 0.55)) drop-shadow(0 0 22px rgba(227, 38, 43, 0.35));
-    animation: hover-bob 3.4s ease-in-out infinite alternate; animation-delay: var(--delay, 0s);
-    transition: transform 0.2s ease, color 0.2s ease;
+  .bench-obj svg { width: 100%; height: auto; display: block; }
+  .bench-obj.decor { cursor: default; pointer-events: none; }
+  .bench-obj:not(.decor):hover { transform: rotate(var(--rot, 0deg)) translateY(-3px); filter: drop-shadow(0 10px 10px rgba(0,0,0,0.45)); }
+  /* Picked up: lifted off the mat, bigger, with a softer shadow further below */
+  .bench-obj.up {
+    z-index: 4; cursor: grabbing;
+    transform: rotate(calc(var(--rot, 0deg) * 0.3)) translateY(-10px) scale(1.12);
+    filter: drop-shadow(0 26px 22px rgba(0,0,0,0.5));
   }
-  .float-obj .art svg { width: 100%; height: 100%; display: block; }
-  /* Shadow on the mat that shrinks as the object rises */
-  .float-obj::after {
-    content: ""; position: absolute; left: 20%; right: 20%; bottom: -22%; height: 10%; border-radius: 50%;
-    background: rgba(0, 0, 0, 0.45); filter: blur(4px);
-    animation: hover-shadow 3.4s ease-in-out infinite alternate; animation-delay: var(--delay, 0s);
+  .bench-obj:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 8px; }
+  .preview {
+    position: absolute; z-index: 6; width: 250px; display: none; color: var(--text); text-align: left;
+    background: var(--surface-solid); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 16px; box-shadow: var(--shadow); font-size: 0.9rem; line-height: 1.45;
   }
-  .float-obj:hover .art, .float-obj:focus-visible .art { color: #fff; transform: scale(1.12); }
-  .float-obj:focus-visible { outline: none; }
-  @keyframes hover-bob { from { translate: 0 0; } to { translate: 0 -14%; } }
-  @keyframes hover-shadow { from { transform: scaleX(1); opacity: 0.9; } to { transform: scaleX(0.7); opacity: 0.5; } }
-  .float-obj .peek {
-    position: absolute; left: 50%; top: calc(100% + 26px); width: 210px; transform: translateX(-50%);
-    background: var(--surface-solid); color: var(--text); border: 1px solid var(--line); border-radius: 12px;
-    padding: 10px 12px; font: 0.88rem/1.4 Inter, sans-serif; text-align: left; box-shadow: var(--shadow);
-    opacity: 0; pointer-events: none; transition: opacity 0.15s ease; z-index: 5;
-  }
-  .float-obj.peek-l .peek { left: 0; transform: none; }
-  .float-obj.peek-r .peek { left: auto; right: 0; transform: none; }
-  .float-obj:hover .peek, .float-obj:focus-visible .peek, .float-obj.show .peek { opacity: 1; }
-  .peek strong { display: block; font-family: "Space Grotesk", sans-serif; font-size: 0.98rem; }
-  .peek .tag { margin: 4px 0 0; }
+  .preview.open { display: block; animation: preview-in 0.18s ease-out; }
+  a.preview:hover { text-decoration: none; border-color: var(--accent-line); }
+  .preview strong { display: block; font: 600 1.02rem/1.3 "Space Grotesk", sans-serif; margin-bottom: 4px; }
+  .preview p { margin: 6px 0 0; color: var(--muted); }
+  .preview .go { display: block; margin-top: 10px; color: var(--accent); font: 500 0.78rem "JetBrains Mono", monospace; }
+  .preview .tag { margin: 2px 0 0; }
+  @keyframes preview-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
   .sticky {
-    position: absolute; top: -12px; right: -18px; z-index: 2; transform: rotate(8deg);
-    background: var(--grad); color: #fff; font: 700 0.68rem/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em;
-    padding: 6px 8px; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    position: absolute; top: -10px; left: -10px; z-index: 2; transform: rotate(-10deg);
+    background: #fde68a; color: #78350f; font: 700 0.72rem/1 "Space Grotesk", sans-serif; letter-spacing: 0.08em;
+    padding: 8px 9px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   }
 
   /* ---------- Stoic learning ---------- */
@@ -406,14 +401,13 @@
     details.proc .body { padding: 0 18px 18px; }
     ul.awards li { flex-direction: column; gap: 0; }
     .reflections { aspect-ratio: 4 / 3; }
-    .float-obj { width: 17%; }
-    .float-obj .peek { width: 160px; }
+    .preview { left: 4% !important; right: 4% !important; top: auto !important; bottom: 4%; width: auto; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     body, .dark, .card, .sidenav, .theme-switch .beam { transition: none; }
     .flash.go { animation: none; }
-    .float-obj .art, .float-obj::after { animation: none; }
+    .bench-obj, .preview.open { transition: none; animation: none; }
     .pulse, button.stamp.thunk, details.proc .body { animation: none; }
   }
 </style>
@@ -775,57 +769,104 @@
 <script>
   // ---------------------------------------------------------------------
   // Medium posts, newest first. Add one object per post:
-  //   { title: "Post title", url: "https://medium.com/...", date: "2026-11-20", blurb: "One sentence.", icon: "robot" }
-  // icon is "robot", "agent", or "code". Each post becomes a floating object
-  // on the mat; spots without a post say Coming soon on hover. The newest
-  // post gets a NEW label for 30 days after its date.
+  //   { title: "Post title", url: "https://medium.com/...", date: "2026-11-20", blurb: "One sentence.", topic: "robotics" }
+  // topic is "robotics", "agents", or "code" and picks the object on the
+  // bench. Pick up an object to see a preview; click the preview to open the
+  // post. Objects without a post say Coming soon. The newest post gets a NEW
+  // note for 30 days after its date.
   // ---------------------------------------------------------------------
   const posts = [];
   const NEW_DAYS = 30;
 
-  const svg = d => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
-  const ICONS = {
-    robot: svg('<rect x="5" y="8" width="14" height="11" rx="2.5"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1"/><circle cx="9.5" cy="13" r="1.2"/><circle cx="14.5" cy="13" r="1.2"/><path d="M10 16.5h4M3 12v3M21 12v3"/>'),
-    agent: svg('<circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="1.6"/><circle cx="19" cy="5" r="1.6"/><circle cx="5" cy="19" r="1.6"/><circle cx="19" cy="19" r="1.6"/><path d="m6.2 6.2 3.6 3.6M17.8 6.2l-3.6 3.6M6.2 17.8l3.6-3.6M17.8 17.8l-3.6-3.6"/>'),
-    code: svg('<path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>')
+  // Top-down drawings of things on the bench.
+  const ART = {
+    robot: `<svg viewBox="0 0 130 130"><rect x="8" y="34" width="16" height="62" rx="5" fill="#1f2430"/><rect x="106" y="34" width="16" height="62" rx="5" fill="#1f2430"/><g stroke="#3a4150" stroke-width="2">${[42,52,62,72,82].map(y=>`<path d="M8 ${y}h16M106 ${y}h16"/>`).join("")}</g><rect x="22" y="24" width="86" height="82" rx="14" fill="#e3262b"/><rect x="30" y="32" width="70" height="66" rx="10" fill="#c81e3c"/><circle cx="50" cy="56" r="10" fill="#f8fafc"/><circle cx="80" cy="56" r="10" fill="#f8fafc"/><circle cx="50" cy="56" r="4.5" fill="#111827"/><circle cx="80" cy="56" r="4.5" fill="#111827"/><rect x="46" y="76" width="38" height="8" rx="4" fill="#fecaca"/><path d="M65 24V10" stroke="#9aa0a8" stroke-width="3"/><circle cx="65" cy="8" r="5" fill="#fde047"/></svg>`,
+    notebook: `<svg viewBox="0 0 120 150"><rect x="12" y="6" width="100" height="138" rx="6" fill="#4c1d95"/><rect x="20" y="6" width="92" height="138" rx="4" fill="#7c3aed"/><rect x="36" y="34" width="62" height="24" rx="3" fill="#f5f3ff"/><text x="67" y="51" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#4c1d95">AI</text><g stroke="#ddd6fe" stroke-width="2" fill="none"><circle cx="50" cy="96" r="5"/><circle cx="84" cy="88" r="5"/><circle cx="72" cy="118" r="5"/><path d="M55 95l24-6M53 100l15 14M82 93l-8 20"/></g><g fill="none" stroke="#d6dde2" stroke-width="3">${[18,32,46,60,74,88,102,116,130].map(y=>`<circle cx="16" cy="${y}" r="5"/>`).join("")}</g></svg>`,
+    board: `<svg viewBox="0 0 150 110"><rect x="4" y="4" width="142" height="102" rx="8" fill="#0f7a4a"/><g stroke="#e0b252" stroke-width="2.5" fill="none"><path d="M20 22h40v26h50"/><path d="M20 90h30V62h70"/><path d="M132 22v64"/></g><rect x="62" y="32" width="36" height="28" rx="2" fill="#15171c"/><text x="80" y="51" text-anchor="middle" font-family="monospace" font-size="12" fill="#9ae6b4">&lt;/&gt;</text><rect x="26" y="70" width="18" height="12" rx="2" fill="#15171c"/><rect x="104" y="72" width="22" height="14" rx="2" fill="#c0c4cc"/><g fill="#e0b252">${[16,34,52,70,88,106,124].map(x=>`<circle cx="${x}" cy="10" r="3"/>`).join("")}</g></svg>`,
+    screwdriver: `<svg viewBox="0 0 170 40"><rect x="6" y="8" width="62" height="24" rx="12" fill="#f59e0b"/><g stroke="#d97706" stroke-width="3"><path d="M20 10v20M34 10v20M48 10v20"/></g><rect x="66" y="17" width="88" height="6" fill="#b9bcc2"/><path d="M154 15 l10 5 -10 5z" fill="#9aa0a8"/></svg>`,
+    coil: `<svg viewBox="0 0 130 130"><g fill="none" stroke="#c8733a" stroke-width="6">${[56,48,40,32,24].map(r=>`<circle cx="65" cy="65" r="${r}"/>`).join("")}</g><circle cx="65" cy="65" r="14" fill="#4a3324"/><path d="M121 65 C 128 90, 110 112, 96 124" fill="none" stroke="#c8733a" stroke-width="6" stroke-linecap="round"/></svg>`
   };
-  const SOON = [["robot", "Robotics"], ["agent", "AI agents"], ["code", "Code"]];
-  // Where objects float on the mat (percent of mat size) and which way the label opens.
-  const SPOTS = [
-    { l: 12, t: 18, peek: "peek-l", delay: 0 }, { l: 44, t: 40, peek: "", delay: 1.1 }, { l: 74, t: 14, peek: "peek-r", delay: 0.5 },
-    { l: 22, t: 58, peek: "peek-l", delay: 1.7 }, { l: 64, t: 56, peek: "peek-r", delay: 0.8 }
-  ];
+  // The three topics, where each object lies (percent of the mat), and how it's turned.
+  const TOPICS = {
+    robotics: { name: "Robotics", art: "robot", l: 10, t: 16, w: 15, rot: -8 },
+    agents: { name: "AI agents", art: "notebook", l: 42, t: 22, w: 14, rot: 6 },
+    code: { name: "Code", art: "board", l: 70, t: 46, w: 20, rot: -4 }
+  };
 
   const reflections = document.getElementById("reflections");
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  function place(el, spot) {
-    el.className = `float-obj ${spot.peek}`;
-    el.style.left = spot.l + "%"; el.style.top = spot.t + "%";
-    el.style.setProperty("--delay", -spot.delay + "s");
+  function lay(el, spot) {
+    el.style.left = spot.l + "%"; el.style.top = spot.t + "%"; el.style.width = spot.w + "%";
+    el.style.setProperty("--rot", spot.rot + "deg");
     reflections.appendChild(el);
   }
 
-  posts.slice(0, SPOTS.length).forEach((p, i) => {
-    const d = new Date(p.date + "T00:00:00");
-    const fresh = i === 0 && (Date.now() - d) / 86400000 <= NEW_DAYS;
-    const a = document.createElement("a");
-    a.href = p.url;
-    a.innerHTML = (fresh ? `<span class="sticky">NEW</span>` : "") +
-      `<span class="art">${ICONS[p.icon] || ICONS[SOON[i % SOON.length][0]]}</span>` +
-      `<span class="peek"><strong>${esc(p.title)}</strong>` +
-      `<span class="meta">${d.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}</span>` +
-      (p.blurb ? `<br>${esc(p.blurb)}` : "") + `</span>`;
-    place(a, SPOTS[i]);
+  // Decorations that can't be picked up.
+  [["screwdriver", { l: 18, t: 74, w: 22, rot: 12 }], ["coil", { l: 84, t: 10, w: 11, rot: 0 }]].forEach(([art, spot]) => {
+    const d = document.createElement("div");
+    d.className = "bench-obj decor";
+    d.setAttribute("aria-hidden", "true");
+    d.innerHTML = ART[art];
+    lay(d, spot);
   });
-  SOON.slice(posts.length).forEach(([icon, name], i) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.setAttribute("aria-label", `${name}: coming soon`);
-    b.innerHTML = `<span class="art">${ICONS[icon]}</span><span class="peek"><strong>${name}</strong><span class="tag">Coming soon</span></span>`;
-    b.addEventListener("click", () => b.classList.toggle("show"));
-    place(b, SPOTS[posts.length + i]);
+
+  let preview = document.createElement("div");
+  preview.className = "preview";
+  reflections.appendChild(preview);
+  let held = null;
+
+  function putDown() {
+    if (held) held.classList.remove("up"), held.setAttribute("aria-expanded", "false");
+    held = null;
+    preview.className = "preview";
+  }
+  function pickUp(obj, spot, html, url) {
+    const again = held === obj;
+    putDown();
+    if (again) return;
+    held = obj;
+    obj.classList.add("up");
+    obj.setAttribute("aria-expanded", "true");
+    // The preview is a link only when there's a post to open.
+    const next = document.createElement(url ? "a" : "div");
+    if (url) next.href = url;
+    next.innerHTML = html;
+    preview.replaceWith(next);
+    preview = next;
+    preview.className = "preview open";
+    preview.style.top = spot.t + "%";
+    preview.style.left = spot.l < 50 ? spot.l + spot.w + 3 + "%" : "auto";
+    preview.style.right = spot.l < 50 ? "auto" : 100 - spot.l + 3 + "%";
+  }
+
+  Object.entries(TOPICS).forEach(([key, spot]) => {
+    const i = posts.findIndex(p => p.topic === key);
+    const p = posts[i];
+    const obj = document.createElement("button");
+    obj.type = "button";
+    obj.className = "bench-obj";
+    obj.setAttribute("aria-expanded", "false");
+    obj.setAttribute("aria-label", p ? `Pick up: ${p.title}` : `Pick up: ${spot.name}, coming soon`);
+    let html, url;
+    if (p) {
+      const d = new Date(p.date + "T00:00:00");
+      const fresh = i === 0 && (Date.now() - d) / 86400000 <= NEW_DAYS;
+      obj.innerHTML = (fresh ? `<span class="sticky">NEW</span>` : "") + ART[spot.art];
+      html = `<strong>${esc(p.title)}</strong><span class="meta">${d.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" })}</span>` +
+        (p.blurb ? `<p>${esc(p.blurb)}</p>` : "") + `<span class="go">Read on Medium &rarr;</span>`;
+      url = p.url;
+    } else {
+      obj.innerHTML = ART[spot.art];
+      html = `<strong>${spot.name}</strong><span class="tag">Coming soon</span>`;
+    }
+    obj.addEventListener("click", e => { e.stopPropagation(); pickUp(obj, spot, html, url); });
+    lay(obj, spot);
   });
+
+  // Click anywhere else, or press Escape, to put the object back down.
+  document.addEventListener("click", e => { if (held && !preview.contains(e.target)) putDown(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") putDown(); });
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
