@@ -213,7 +213,23 @@
   .now .item b { color: var(--text); font-weight: 500; }
 
   /* ---------- Written reflections: one card per Medium post ---------- */
-  .reflections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  /* The cards sit on a cutting mat */
+  .reflections {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding: 40px 36px; border-radius: 20px;
+    background:
+      linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 8px 8px,
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px) 0 0 / 8px 8px,
+      linear-gradient(160deg, #5b1035, #3f0d3a 60%, #2a0b36);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -24px 50px rgba(0,0,0,0.25), 0 30px 60px -28px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .reflections .refl { background: var(--surface-solid); box-shadow: 0 12px 24px -10px rgba(0,0,0,0.5); transform: rotate(var(--rot, 0deg)); }
+  .reflections .refl:nth-child(1) { --rot: -1.5deg; }
+  .reflections .refl:nth-child(2) { --rot: 1deg; }
+  .reflections .refl:nth-child(3) { --rot: -0.5deg; }
+  .reflections .refl:hover { transform: rotate(var(--rot, 0deg)) translateY(-4px); }
   .refl { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin: 0; color: inherit; }
   a.refl:hover { text-decoration: none; }
   .refl .art {
@@ -372,7 +388,7 @@
     details.proc summary { padding: 18px; gap: 12px; }
     details.proc .body { padding: 0 18px 18px; }
     ul.awards li { flex-direction: column; gap: 0; }
-    .reflections { grid-template-columns: 1fr; }
+    .reflections { grid-template-columns: 1fr; padding: 22px 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
