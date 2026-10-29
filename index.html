@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krishiv Mehta</title>
+<meta name="description" content="Krishiv Mehta, Grade 12 IB student in Toronto. Physics, electronics, and making things work.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23e8590c'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='30' font-weight='700' fill='white' text-anchor='middle'%3EKM%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6b6b70;
+    --line: #e7e5e1;
+    --accent: #e8590c;
+    --accent-soft: #fff1e8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141416;
+      --surface: #1c1c1f;
+      --text: #ededf0;
+      --muted: #9a9aa2;
+      --line: #2c2c31;
+      --accent: #ff8a4c;
+      --accent-soft: #2a1d15;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 64px 20px 48px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  header h1 { font-size: 2.6rem; line-height: 1.1; margin: 0 0 12px; letter-spacing: -0.02em; }
+  header p { margin: 0 0 24px; color: var(--muted); font-size: 1.1rem; max-width: 34em; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    border: 1px solid var(--line); background: var(--surface); color: var(--text);
+    padding: 8px 14px; border-radius: 999px; font-size: 0.95rem;
+  }
+  .links a:hover { border-color: var(--accent); text-decoration: none; }
+  .links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  section { margin-top: 56px; }
+  h2 {
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--muted); margin: 0 0 16px; font-weight: 600;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 22px; margin-bottom: 12px;
+  }
+  .card h3 { margin: 0 0 4px; font-size: 1.1rem; line-height: 1.35; }
+  .card p { margin: 6px 0 0; }
+  .meta { color: var(--muted); font-size: 0.9rem; }
+  .tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 6px; margin-left: 8px;
+    vertical-align: 2px; background: var(--accent-soft); color: var(--accent);
+  }
+  .tag.new { background: var(--accent); color: #fff; }
+  a.card { display: block; color: inherit; }
+  a.card:hover { border-color: var(--accent); text-decoration: none; }
+
+  .row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  ul.awards { list-style: none; padding: 0; margin: 0; }
+  ul.awards li { padding: 10px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; }
+  ul.awards li:last-child { border-bottom: 0; }
+
+  footer { margin-top: 64px; color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 520px) {
+    main { padding-top: 40px; }
+    header h1 { font-size: 2.1rem; }
+    ul.awards li { flex-direction: column; gap: 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Krishiv Mehta</h1>
+    <p>Grade 12 IB student in Toronto. I like physics, electronics, and getting things to work, then explaining how they work to anyone who'll listen.</p>
+    <nav class="links">
+      <a class="primary" href="Krishiv-Mehta-Resume.pdf">Resume (PDF)</a>
+      <a href="https://www.linkedin.com/in/krishiv-a-mehta">LinkedIn</a>
+      <a href="mailto:krishiv.a.mehta9@gmail.com">krishiv.a.mehta9@gmail.com</a>
+    </nav>
+  </header>
+
+  <section id="writing">
+    <h2>Writing</h2>
+    <div id="posts"></div>
+  </section>
+
+  <section id="build">
+    <h2>Robot build</h2>
+    <div class="card">
+      <h3>Robotics build <span class="tag">In progress</span></h3>
+      <p class="meta">Build log, wiring diagrams, and test results coming soon.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="card">
+      <div class="row"><h3>Co-President, Computer Science Club</h3><span class="meta">Aug 2025 to now</span></div>
+      <div class="meta">Maple High School</div>
+      <p>Co-taught 20+ lessons to a 23-member club, from loops and data types to AI ethics. More than half the club went on to write the Canadian Computing Competition.</p>
+    </div>
+
+    <div class="card">
+      <div class="row"><h3>Student, The Knowledge Society</h3><span class="meta">Aug 2026 to now</span></div>
+      <p>Writing a research paper on how swarms of small robots could study ecosystems and microbiomes while disturbing them as little as possible.</p>
+    </div>
+
+    <div class="card">
+      <div class="row"><h3>Assistant Camp Counselor, STEM Camp</h3><span class="meta">Summer 2025</span></div>
+      <div class="meta">Vellore Village Community Centre</div>
+      <p>Taught chemistry, physics, and math to 35 to 40 campers aged 4 to 7, turning experiments like foaming acid-base reactions and pulleys into explanations they could follow.</p>
+    </div>
+
+    <div class="card">
+      <div class="row"><h3>Tae Kwon Do Instructor</h3><span class="meta">2019 to 2020</span></div>
+      <div class="meta">Pulse Academy</div>
+      <p>Taught a class of 16 kids aged 7 to 10; 12 of them moved up a belt. Black belt after 7 years of training.</p>
+    </div>
+  </section>
+
+  <section id="awards">
+    <h2>Awards and competitions</h2>
+    <div class="card">
+      <ul class="awards">
+        <li><span>Principal's Honour Roll, 97% average</span><span class="meta">Grade 11</span></li>
+        <li><span>Physics Award and Philosophy Award</span><span class="meta">Grade 11</span></li>
+        <li><span>Sir Isaac Newton Physics Exam, top 5 in school</span><span class="meta">2026</span></li>
+        <li><span>Canadian Computing Competition</span><span class="meta">2026</span></li>
+        <li><span>Fermat Mathematics Contest</span><span class="meta">2026</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Krishiv Mehta, Toronto</footer>
+</main>
+
+<script>
+  // Medium posts, newest first. Add one object per post:
+  //   { title: "Post title", url: "https://medium.com/...", date: "2026-11-20", blurb: "One sentence." }
+  // The newest post gets a NEW label for 30 days after its date.
+  const posts = [];
+
+  const NEW_DAYS = 30;
+  const box = document.getElementById("posts");
+
+  if (posts.length === 0) {
+    box.innerHTML =
+      '<div class="card"><h3>Swarm robotics research paper <span class="tag">Coming soon</span></h3>' +
+      '<p class="meta">How swarms of small robots could study ecosystems and microbiomes without disturbing them. Publishing on Medium.</p></div>';
+  } else {
+    posts.forEach((p, i) => {
+      const d = new Date(p.date + "T00:00:00");
+      const fresh = i === 0 && (Date.now() - d) / 86400000 <= NEW_DAYS;
+      const a = document.createElement("a");
+      a.className = "card";
+      a.href = p.url;
+      a.innerHTML =
+        "<h3></h3><div class='meta'></div>" + (p.blurb ? "<p></p>" : "");
+      a.querySelector("h3").textContent = p.title;
+      if (fresh) a.querySelector("h3").insertAdjacentHTML("beforeend", ' <span class="tag new">New</span>');
+      a.querySelector(".meta").textContent =
+        d.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" }) + " on Medium";
+      if (p.blurb) a.querySelector("p").textContent = p.blurb;
+      box.appendChild(a);
+    });
+  }
+</script>
+</body>
+</html>
